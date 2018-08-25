@@ -7,14 +7,14 @@
 #include "U4ProjectGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class U4PROJECT_API AU4ProjectGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
+
+
+
 };
