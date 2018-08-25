@@ -32,13 +32,13 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
     // ...
 }
 
-void UTankAimingComponent::AimAtTank( FVector aimTarget )
+void UTankAimingComponent::AimAtTank( FVector aimTarget, float lounchSpeed )
 {
     auto tankRequestingAim = GetOwner();
     if( tankRequestingAim && Barrel )
     {
-        auto barrelPos = Barrel->GetComponentLocation();
-        UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s from pos: %s" ), *tankRequestingAim->GetName(), *aimTarget.ToString(), *barrelPos.ToString() );
+        auto outletLocation = Barrel->GetSocketLocation( "Projectile" );
+        UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s from pos: %s at speed: %f" ), *tankRequestingAim->GetName(), *aimTarget.ToString(), *barrelPos.ToString(), lounchSpeed );
     }
 }
 

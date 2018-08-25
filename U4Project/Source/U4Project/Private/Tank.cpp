@@ -6,7 +6,7 @@
 // Sets default values
 ATank::ATank() :
     TankAimingComponent( nullptr )
-    , Barrel( nullptr )
+    , LounchSpeed( 70000 )
 {
     // Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
@@ -17,7 +17,7 @@ ATank::ATank() :
 
 void ATank::AimAt( FVector hitLocation )
 {
-    TankAimingComponent->AimAtTank( hitLocation );
+    TankAimingComponent->AimAtTank( hitLocation, LounchSpeed );
 }
 
 // Called when the game starts or when spawned
@@ -43,7 +43,6 @@ void ATank::SetupPlayerInputComponent( UInputComponent* PlayerInputComponent )
 
 void ATank::SetBarrel( UStaticMeshComponent * barrel )
 {
-    Barrel = barrel; 
     TankAimingComponent->SetBarrel( barrel );
 }
 

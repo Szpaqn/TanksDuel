@@ -34,10 +34,10 @@ public:
     UFUNCTION( BlueprintCallable, Category = Setup )
     void SetBarrel( UStaticMeshComponent* barrel );
 
-    UStaticMeshComponent* GetBarrel() const { return Barrel; }
 
 private:
-    UStaticMeshComponent* Barrel;
+    UPROPERTY( EditAnywhere, Category = Firing )
+    float LounchSpeed;
 
 
 };
