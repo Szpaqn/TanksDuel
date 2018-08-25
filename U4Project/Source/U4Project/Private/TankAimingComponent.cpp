@@ -32,11 +32,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt( FVector aimTarget, ATank* tankRequestingAim ) const
+void UTankAimingComponent::AimAt( FVector aimTarget, ATank* tankRequestingAim )
 {
 	if( tankRequestingAim )
 	{
-		UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *hitLocation.ToString() )
+		UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *hitLocation.ToString() );
 	}
 }
 
