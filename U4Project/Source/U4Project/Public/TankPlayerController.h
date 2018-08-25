@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <utility>
 #include "Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
@@ -19,5 +20,22 @@ public:
 	ATank* GetControlledTank() const;
 
 	virtual void BeginPlay() override;
+
+	std::pair<bool, FVector> GetSightRayHitLocation();
+	std::pair<bool, FVector> GetLookVectorHitLocation( FVector LookDirection ) const;
+
+private:
+	virtual void Tick( float DeltaTime ) override;
+
+	void AimTowardsCrosshair();
+
+	UPROPERTY( EditAnywhere )
+	float CrosshairXLocation{ 0.5 };
+
+	UPROPERTY( EditAnywhere )
+	float CrosshairYLocation{ 0.333333 };
+
+	UPROPERTY( EditAnywhere )
+	int32 LineTraceRange{ 1000000 }; //10 * 1000 * 100 cm
 
 };

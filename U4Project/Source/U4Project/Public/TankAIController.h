@@ -2,13 +2,14 @@
 
 #pragma once
 
+#include <utility>
 #include "Tank.h"
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class U4PROJECT_API ATankAIController : public AAIController
@@ -19,5 +20,8 @@ public:
 	ATank* GetPlayerTank() const;
 
 	virtual void BeginPlay() override;
+
+private:
+	virtual void Tick( float DeltaTime ) override;
 
 };
