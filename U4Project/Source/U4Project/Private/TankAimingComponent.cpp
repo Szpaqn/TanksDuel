@@ -2,7 +2,6 @@
 
 #include "TankAimingComponent.h"
 
-
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
 {
@@ -32,11 +31,12 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt( FVector aimTarget, ATank* tankRequestingAim )
+void UTankAimingComponent::AimAtTank( FVector aimTarget )
 {
+	auto tankRequestingAim = GetOwner();
 	if( tankRequestingAim )
 	{
-		UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *hitLocation.ToString() );
+		UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *aimTarget.ToString() );
 	}
 }
 
