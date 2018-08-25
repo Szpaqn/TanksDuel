@@ -3,40 +3,42 @@
 #include "TankAimingComponent.h"
 
 // Sets default values for this component's properties
-UTankAimingComponent::UTankAimingComponent()
+UTankAimingComponent::UTankAimingComponent() :
+    Barrel( nullptr )
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+    // Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+    // off to improve performance if you don't need them.
+    PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+    // ...
 }
 
 
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
-	// ...
-	
+    // ...
+
 }
 
 
 // Called every frame
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+    Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	// ...
+    // ...
 }
 
 void UTankAimingComponent::AimAtTank( FVector aimTarget )
 {
-	auto tankRequestingAim = GetOwner();
-	if( tankRequestingAim )
-	{
-		UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *aimTarget.ToString() );
-	}
+    auto tankRequestingAim = GetOwner();
+    if( tankRequestingAim && Barrel )
+    {
+        auto barrelPos = Barrel->GetComponentLocation();
+        UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s from pos: %s" ), *tankRequestingAim->GetName(), *aimTarget.ToString(), *barrelPos.ToString() );
+    }
 }
 

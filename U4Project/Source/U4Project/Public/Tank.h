@@ -10,27 +10,34 @@
 UCLASS()
 class U4PROJECT_API ATank : public APawn
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	ATank();
+    // Sets default values for this pawn's properties
+    ATank();
 
-	void AimAt( FVector hitLocation );
+    void AimAt( FVector hitLocation );
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
 
-	UTankAimingComponent* TankAimingComponent;
+    UTankAimingComponent* TankAimingComponent;
 public:
-	// Called every frame
-	virtual void Tick( float DeltaTime ) override;
+    // Called every frame
+    virtual void Tick( float DeltaTime ) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent ) override;
+    // Called to bind functionality to input
+    virtual void SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent ) override;
 
+    UFUNCTION( BlueprintCallable, Category = Setup )
+    void SetBarrel( UStaticMeshComponent* barrel );
+
+    UStaticMeshComponent* GetBarrel() const { return Barrel; }
+
+private:
+    UStaticMeshComponent* Barrel;
 
 
 };

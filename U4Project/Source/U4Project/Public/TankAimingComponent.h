@@ -10,20 +10,26 @@
 UCLASS( ClassGroup = ( Custom ), meta = ( BlueprintSpawnableComponent ) )
 class U4PROJECT_API UTankAimingComponent : public UActorComponent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
-	UTankAimingComponent();
+    // Sets default values for this component's properties
+    UTankAimingComponent();
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+    // Called when the game starts
+    virtual void BeginPlay() override;
 
 public:
-	// Called every frame
-	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+    // Called every frame
+    virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	void AimAtTank( FVector aimTarget );
+    void AimAtTank( FVector aimTarget );
+
+    void SetBarrel( UStaticMeshComponent* barrel ) { Barrel = barrel; }
+    UStaticMeshComponent* GetBarrel() const { return Barrel; }
+
+private:
+    UStaticMeshComponent* Barrel;
 
 };

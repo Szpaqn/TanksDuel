@@ -14,28 +14,31 @@
 UCLASS()
 class U4PROJECT_API ATankPlayerController : public APlayerController
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	ATank* GetControlledTank() const;
+    ATank* GetControlledTank() const;
 
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-	std::pair<bool, FVector> GetSightRayHitLocation();
-	std::pair<bool, FVector> GetLookVectorHitLocation( FVector LookDirection ) const;
+    std::pair<bool, FVector> GetSightRayHitLocation();
+    std::pair<bool, FVector> GetLookVectorHitLocation( FVector LookDirection ) const;
 
 private:
-	virtual void Tick( float DeltaTime ) override;
+    virtual void Tick( float DeltaTime ) override;
 
-	void AimTowardsCrosshair();
+    void AimTowardsCrosshair();
 
-	UPROPERTY( EditAnywhere )
-	float CrosshairXLocation{ 0.5 };
+    UPROPERTY( EditAnywhere )
+        float CrosshairXLocation{ 0.5 };
 
-	UPROPERTY( EditAnywhere )
-	float CrosshairYLocation{ 0.333333 };
+    UPROPERTY( EditAnywhere )
+        float CrosshairYLocation{ 0.333333 };
 
-	UPROPERTY( EditAnywhere )
-	int32 LineTraceRange{ 1000000 }; //10 * 1000 * 100 cm
+    UPROPERTY( EditAnywhere )
+        int32 LineTraceRange
+    {
+        1000000
+    }; //10 * 1000 * 100 cm
 
 };

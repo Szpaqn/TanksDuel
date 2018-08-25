@@ -14,14 +14,14 @@
 UCLASS()
 class U4PROJECT_API ATankAIController : public AAIController
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 public:
-	ATank* GetControlledTank() const;
-	ATank* GetPlayerTank() const;
+    ATank* GetControlledTank() const;
+    ATank* GetPlayerTank() const;
 
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
 private:
-	virtual void Tick( float DeltaTime ) override;
+    virtual void Tick( float DeltaTime ) override;
 
 };

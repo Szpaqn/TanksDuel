@@ -4,38 +4,46 @@
 
 
 // Sets default values
-ATank::ATank()
+ATank::ATank() :
+    TankAimingComponent( nullptr )
+    , Barrel( nullptr )
 {
-	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    // Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = true;
 
-	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>( FName( "Aiming Component" ) );
+    TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>( FName( "Aiming Component" ) );
 
 }
 
 void ATank::AimAt( FVector hitLocation )
 {
-	TankAimingComponent->AimAtTank( hitLocation );
+    TankAimingComponent->AimAtTank( hitLocation );
 }
 
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
 }
 
 // Called every frame
 void ATank::Tick( float DeltaTime )
 {
-	Super::Tick( DeltaTime );
+    Super::Tick( DeltaTime );
 
 }
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent( UInputComponent* PlayerInputComponent )
 {
-	Super::SetupPlayerInputComponent( PlayerInputComponent );
+    Super::SetupPlayerInputComponent( PlayerInputComponent );
 
+}
+
+void ATank::SetBarrel( UStaticMeshComponent * barrel )
+{
+    Barrel = barrel; 
+    TankAimingComponent->SetBarrel( barrel );
 }
 
