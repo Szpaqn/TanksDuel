@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+class UTankBarrel;
 
 UCLASS( ClassGroup = ( Custom ), meta = ( BlueprintSpawnableComponent ) )
 class U4PROJECT_API UTankAimingComponent : public UActorComponent
@@ -16,19 +17,15 @@ public:
     // Sets default values for this component's properties
     UTankAimingComponent();
 
-protected:
-    // Called when the game starts
-    virtual void BeginPlay() override;
-
 public:
-    // Called every frame
-    virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
     void AimAtTank( FVector aimTarget, float lounchSpeed);
 
-    void SetBarrel( UStaticMeshComponent* barrel ) { Barrel = barrel; }
+    void MoveBarrel( FVector aimDirection );
+
+    void SetBarrel( UTankBarrel* barrel ) { Barrel = barrel; }
 
 private:
-    UStaticMeshComponent* Barrel;
+    UTankBarrel* Barrel;
 
 };
