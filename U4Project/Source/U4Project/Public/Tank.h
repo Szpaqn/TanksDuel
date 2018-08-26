@@ -50,4 +50,9 @@ private:
     TSubclassOf<AProjectile> ProjectileBlueP;
 
     UTankBarrel* Barrel;
+
+    UPROPERTY( EditAnywhere, Category = Firing )
+    float ReloadTime;
+
+    float CurrentReloadTime;
 };

@@ -19,19 +19,5 @@ class U4PROJECT_API UTankProjectileMovementComponent : public UProjectileMovemen
 	
 public:
     UTankProjectileMovementComponent();
-    UTankProjectileMovementComponent( AProjectile* projectile, UTankBarrel* barrel );
-
-    void AimAtTank( FVector aimTarget, float LaunchSpeed);
-
-    void MoveBarrel( FVector aimDirection );
-
-    void SetProjectile( AProjectile* projectile ) { Projectile = projectile; }
-    void SetBarrel( UTankBarrel* barrel ) { Barrel = barrel; }
-
-private:
-    AProjectile* Projectile;
-    UTankBarrel* Barrel;
-
-	
 	
 };

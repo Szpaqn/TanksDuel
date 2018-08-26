@@ -2,16 +2,7 @@
 
 #include "TankProjectileMovementComponent.h"
 
-UTankProjectileMovementComponent::UTankProjectileMovementComponent() :
-    Projectile( nullptr )
-    , Barrel( nullptr )
-{
-    bAutoActivate = false;
-}
-
-UTankProjectileMovementComponent::UTankProjectileMovementComponent( AProjectile * projectile, UTankBarrel * barrel ) : 
-    Projectile( projectile )
-    , Barrel( barrel )
+UTankProjectileMovementComponent::UTankProjectileMovementComponent() 
 {
     bAutoActivate = false;
 }

@@ -3,51 +3,29 @@
 #include "TankAIController.h"
 #include "Tank.h"
 
-
-
-ATank * ATankAIController::GetControlledTank() const
-{
-    return Cast<ATank>( GetPawn() );
-}
-
-ATank * ATankAIController::GetPlayerTank() const
-{
-    return Cast<ATank>( GetWorld()->GetFirstPlayerController()->GetPawn() );
-}
-
-void ATankAIController::BeginPlay()
-{
-    Super::BeginPlay();
-    auto tank = GetControlledTank();
-    if( tank != nullptr )
-    {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay possesed tank:  %s" ), *tank->GetName() );
-    }
-    else
-    {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay !! NOT POSSESING A TANK !! " ) );
-    }
-
-    auto playerTank = GetPlayerTank();
-    if( playerTank != nullptr )
-    {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay found player tank:  %s" ), *playerTank->GetName() );
-    }
-    else
-    {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay !! PLAYER TANK NOT FOUND !! " ) );
-    }
-
-
-}
-
 void ATankAIController::Tick( float DeltaTime )
 {
     Super::Tick( DeltaTime );
 
-    if( GetPlayerTank() )
+    auto thisTank = Cast<ATank>( GetPawn() );
+    if( thisTank == nullptr )
     {
-        GetControlledTank()->AimAt( GetPlayerTank()->GetActorLocation() );
+        UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay !! NOT POSSESING A TANK !! " ) );
+    }
+    else
+    {
+        auto playerTank = Cast<ATank>( GetWorld()->GetFirstPlayerController()->GetPawn() );
+        if( playerTank )
+        {
+            thisTank->AimAt( playerTank->GetActorLocation() );
+
+            thisTank->Fire();
+        }
+        else
+        {
+            UE_LOG( LogTemp, Warning, TEXT( "ATankAIController BeginPlay !! PLAYER TANK NOT FOUND !! " ) );
+        }
     }
 
 }
+
