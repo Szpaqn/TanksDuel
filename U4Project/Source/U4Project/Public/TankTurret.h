@@ -19,8 +19,6 @@ public:
     void RotateTheTurret( float relativeSpeed );
 
 private:
-    // Called every frame
-    //virtual void Tick( float DeltaTime ) override;
 
     UPROPERTY( EditAnywhere, Category = Setup )
         float MaxDegreesPerSecond{ 30 };
