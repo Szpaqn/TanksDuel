@@ -3,7 +3,7 @@
 #include "TankTrack.h"
 
 UTankTrack::UTankTrack() :
-    MaxForce( 100000 )
+    MaxForce( 10000000 )
 {
 
 }
