@@ -3,6 +3,7 @@
 #include "Tank.h"
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 
 
@@ -40,5 +41,10 @@ void ATank::SetupPlayerInputComponent( UInputComponent* PlayerInputComponent )
 void ATank::SetBarrel( UTankBarrel * barrel )
 {
     TankAimingComponent->SetBarrel( barrel );
+}
+
+void ATank::SetTurret( UTankTurret * turret )
+{
+    TankAimingComponent->SetTurret( turret );
 }
 

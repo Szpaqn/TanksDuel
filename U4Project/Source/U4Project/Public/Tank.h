@@ -8,6 +8,7 @@
 
 class UTankAimingComponent;
 class UTankBarrel;
+class UTankTurret;
 
 UCLASS()
 class U4PROJECT_API ATank : public APawn
@@ -32,6 +33,9 @@ public:
 
     UFUNCTION( BlueprintCallable, Category = Setup )
     void SetBarrel( UTankBarrel* barrel );
+
+    UFUNCTION( BlueprintCallable, Category = Setup )
+    void SetTurret( UTankTurret* turret );
 
 
 private:
