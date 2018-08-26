@@ -18,9 +18,7 @@ public:
     // Sets default values for this component's properties
     UTankAimingComponent();
 
-public:
-
-    void AimAtTank( FVector aimTarget, float lounchSpeed);
+    void AimAtTank( FVector aimTarget, float LaunchSpeed);
 
     void MoveBarrel( FVector aimDirection );
 

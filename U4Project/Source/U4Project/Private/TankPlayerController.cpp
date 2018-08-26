@@ -15,7 +15,7 @@ void ATankPlayerController::BeginPlay()
     auto tank = GetControlledTank();
     if( tank != nullptr )
     {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController BeginPlay possesed tank: %s" ), *tank->GetName() );
+        //UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController BeginPlay possesed tank: %s" ), *tank->GetName() );
     }
     else
     {
@@ -43,12 +43,12 @@ void ATankPlayerController::AimTowardsCrosshair()
 
     if( hittingPair.first ) //hit smth
     {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController hit, Pos: %s" ), *hittingPair.second.ToString() );
+        //UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController hit, Pos: %s" ), *hittingPair.second.ToString() );
         controlledTank->AimAt( hittingPair.second );
     }
     else //didnt hit eny-th
     {
-        UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController not hit, Pos: %s" ), *hittingPair.second.ToString() );
+        //UE_LOG( LogTemp, Warning, TEXT( "ATankPlayerController not hit, Pos: %s" ), *hittingPair.second.ToString() );
     }
 
 }

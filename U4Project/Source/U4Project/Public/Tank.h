@@ -9,6 +9,7 @@
 class UTankAimingComponent;
 class UTankBarrel;
 class UTankTurret;
+class AProjectile;
 
 UCLASS()
 class U4PROJECT_API ATank : public APawn
@@ -20,6 +21,10 @@ public:
     ATank();
 
     void AimAt( FVector hitLocation );
+
+    UFUNCTION( BlueprintCallable, Category = Firing )
+    void Fire();
+
 
 protected:
     // Called when the game starts or when spawned
@@ -37,10 +42,12 @@ public:
     UFUNCTION( BlueprintCallable, Category = Setup )
     void SetTurret( UTankTurret* turret );
 
-
 private:
     UPROPERTY( EditAnywhere, Category = Firing )
-    float LounchSpeed;
+    float LaunchSpeed;
 
+    UPROPERTY( EditAnywhere, Category = Firing )
+    TSubclassOf<AProjectile> ProjectileBlueP;
 
+    UTankBarrel* Barrel;
 };

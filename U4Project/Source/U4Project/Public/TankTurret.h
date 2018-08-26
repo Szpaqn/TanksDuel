@@ -23,7 +23,7 @@ private:
     //virtual void Tick( float DeltaTime ) override;
 
     UPROPERTY( EditAnywhere, Category = Setup )
-        float MaxDegreesPerSecond{ 6 };
+        float MaxDegreesPerSecond{ 30 };
 
     UPROPERTY( EditAnywhere, Category = Setup )
         float MaxRotation{ 360 };

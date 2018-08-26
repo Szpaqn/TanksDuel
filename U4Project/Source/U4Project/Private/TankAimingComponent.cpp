@@ -30,7 +30,7 @@ void UTankAimingComponent::AimAtTank( FVector aimTarget, float launchSpeed )
             false, 0, 0, ESuggestProjVelocityTraceOption::DoNotTrace ) )
         {
             auto aimDirection = outLaunchVelocity.GetSafeNormal();
-            UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *aimDirection.ToString() );
+            //UE_LOG( LogTemp, Warning, TEXT( "Tank %s aiming at pos: %s" ), *tankRequestingAim->GetName(), *aimDirection.ToString() );
             MoveBarrel( aimDirection );
         }
         else
