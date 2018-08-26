@@ -43,15 +43,15 @@ public:
     void SetTurret( UTankTurret* turret );
 
 private:
-    UPROPERTY( EditAnywhere, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = Firing )
     float LaunchSpeed;
 
-    UPROPERTY( EditAnywhere, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = Firing )
     TSubclassOf<AProjectile> ProjectileBlueP;
 
     UTankBarrel* Barrel;
 
-    UPROPERTY( EditAnywhere, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = Firing )
     float ReloadTime;
 
     float CurrentReloadTime;
