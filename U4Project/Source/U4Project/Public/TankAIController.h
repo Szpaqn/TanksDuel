@@ -21,6 +21,8 @@ class U4PROJECT_API ATankAIController : public AAIController
 public:
 
 private:
+    float minRadiusToPlayer{ 4000 };
+
     virtual void Tick( float DeltaTime ) override;
 
 };
