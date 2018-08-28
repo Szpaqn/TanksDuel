@@ -2,8 +2,10 @@
 
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "TankMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
+#include "TankTrack.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "Runtime/Engine/Classes/GameFramework/Actor.h"
 #include "Runtime/Engine/Classes/Components/SceneComponent.h"
@@ -21,6 +23,7 @@ ATank::ATank() :
     PrimaryActorTick.bCanEverTick = false;
 
     TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>( FName( "Aiming Component" ) );
+    TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>( FName( "Movement Component" ) );
 
 }
 
@@ -70,5 +73,17 @@ void ATank::SetBarrel( UTankBarrel * barrel )
 void ATank::SetTurret( UTankTurret * turret )
 {
     TankAimingComponent->SetTurret( turret );
+}
+
+void ATank::SetTrackLeft( UTankTrack * trackLeft )
+{
+    TrackLeft = trackLeft;
+    TankMovementComponent->SetLeftTrack( trackLeft );
+}
+
+void ATank::SetTrackRight( UTankTrack * trackRight )
+{
+    TrackRight = trackRight;
+    TankMovementComponent->SetRightTrack( trackRight );
 }
 

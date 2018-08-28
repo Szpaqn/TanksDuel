@@ -7,9 +7,11 @@
 #include "Tank.generated.h"
 
 class UTankAimingComponent;
+class UTankMovementComponent;
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
+class UTankTrack;
 
 UCLASS()
 class U4PROJECT_API ATank : public APawn
@@ -32,6 +34,9 @@ protected:
 
 
     UTankAimingComponent* TankAimingComponent;
+
+    UPROPERTY( BlueprintReadOnly, Category = Input )
+    UTankMovementComponent* TankMovementComponent;
 public:
     // Called to bind functionality to input
     virtual void SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent ) override;
@@ -41,6 +46,12 @@ public:
 
     UFUNCTION( BlueprintCallable, Category = Setup )
     void SetTurret( UTankTurret* turret );
+    
+    UFUNCTION( BlueprintCallable, Category = Setup )
+    void SetTrackLeft( UTankTrack* trackLeft );
+    
+    UFUNCTION( BlueprintCallable, Category = Setup )
+    void SetTrackRight( UTankTrack* trackRight );
 
 private:
     UPROPERTY( EditDefaultsOnly, Category = Firing )
@@ -50,6 +61,8 @@ private:
     TSubclassOf<AProjectile> ProjectileBlueP;
 
     UTankBarrel* Barrel;
+    UTankTrack* TrackLeft;
+    UTankTrack* TrackRight;
 
     UPROPERTY( EditDefaultsOnly, Category = Firing )
     float ReloadTime;

@@ -6,6 +6,8 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "TankMovementComponent.generated.h"
 
+
+class UTankTrack;
 /**
  * 
  */
@@ -14,6 +16,27 @@ class U4PROJECT_API UTankMovementComponent : public UNavMovementComponent
 {
     GENERATED_BODY()
 
-    void MoveForward( float throttle);
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void MoveForwardBack( float throttle);
+
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void Turn( float throttle);
+
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void TurnLeft( float throttle);
+
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void TurnRight( float throttle);
+
+public:
+
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void SetLeftTrack( UTankTrack* leftTrack ) { LeftTrack = leftTrack; }
+
+    UFUNCTION( BlueprintCallable, Category = Input )
+    void SetRightTrack( UTankTrack* rightTrack ) { RightTrack = rightTrack; }
 	
+private:
+    UTankTrack* LeftTrack;
+    UTankTrack* RightTrack;
 };
