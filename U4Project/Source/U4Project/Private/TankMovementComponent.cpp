@@ -2,6 +2,7 @@
 
 #include "TankMovementComponent.h"
 
-
-
-
+void UTankMovementComponent::MoveForward( float throttle )
+{
+    UE_LOG( LogTemp, Warning, TEXT( "Tank moving " ) );
+}

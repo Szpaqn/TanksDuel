@@ -12,9 +12,8 @@
 UCLASS()
 class U4PROJECT_API UTankMovementComponent : public UNavMovementComponent
 {
-	GENERATED_BODY()
-	
-	
-	
+    GENERATED_BODY()
+
+    void MoveForward( float throttle);
 	
 };
