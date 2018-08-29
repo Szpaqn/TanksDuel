@@ -18,7 +18,7 @@ class U4PROJECT_API ATankPlayerController : public APlayerController
     GENERATED_BODY()
 
 public:
-    UFUNCTION( BlueprintCallable )
+    UFUNCTION( BlueprintCallable, Category = "Setup" )
     ATank* GetControlledTank() const;
 
     virtual void BeginPlay() override;
