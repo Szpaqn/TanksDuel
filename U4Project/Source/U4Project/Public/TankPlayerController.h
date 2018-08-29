@@ -18,6 +18,7 @@ class U4PROJECT_API ATankPlayerController : public APlayerController
     GENERATED_BODY()
 
 public:
+    UFUNCTION( BlueprintCallable )
     ATank* GetControlledTank() const;
 
     virtual void BeginPlay() override;
@@ -34,7 +35,7 @@ private:
         float CrosshairXLocation{ 0.5 };
 
     UPROPERTY( EditAnywhere )
-        float CrosshairYLocation{ 0.333333 };
+        float CrosshairYLocation{ 0.3 };
 
     UPROPERTY( EditAnywhere )
         int32 LineTraceRange
