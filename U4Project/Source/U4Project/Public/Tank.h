@@ -24,7 +24,7 @@ public:
 
     void AimAt( FVector hitLocation );
 
-    UFUNCTION( BlueprintCallable, Category = Firing )
+    UFUNCTION( BlueprintCallable, Category = "Firing" )
     void Fire();
 
 
@@ -33,38 +33,39 @@ protected:
     virtual void BeginPlay() override;
 
 
+    UPROPERTY( BlueprintReadOnly, Category = "Firing" )
     UTankAimingComponent* TankAimingComponent;
 
-    UPROPERTY( BlueprintReadOnly, Category = Input )
+    UPROPERTY( BlueprintReadOnly, Category = "Input" )
     UTankMovementComponent* TankMovementComponent;
 public:
     // Called to bind functionality to input
     virtual void SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent ) override;
 
-    UFUNCTION( BlueprintCallable, Category = Setup )
+    UFUNCTION( BlueprintCallable, Category = "Setup" )
     void SetBarrel( UTankBarrel* barrel );
 
-    UFUNCTION( BlueprintCallable, Category = Setup )
+    UFUNCTION( BlueprintCallable, Category = "Setup" )
     void SetTurret( UTankTurret* turret );
     
-    UFUNCTION( BlueprintCallable, Category = Setup )
+    UFUNCTION( BlueprintCallable, Category = "Setup" )
     void SetTrackLeft( UTankTrack* trackLeft );
     
-    UFUNCTION( BlueprintCallable, Category = Setup )
+    UFUNCTION( BlueprintCallable, Category = "Setup" )
     void SetTrackRight( UTankTrack* trackRight );
 
 private:
-    UPROPERTY( EditDefaultsOnly, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = "Firing" )
     float LaunchSpeed;
 
-    UPROPERTY( EditDefaultsOnly, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = "Firing" )
     TSubclassOf<AProjectile> ProjectileBlueP;
 
     UTankBarrel* Barrel;
     UTankTrack* TrackLeft;
     UTankTrack* TrackRight;
 
-    UPROPERTY( EditDefaultsOnly, Category = Firing )
+    UPROPERTY( EditDefaultsOnly, Category = "Firing" )
     float ReloadTime;
 
     float CurrentReloadTime;

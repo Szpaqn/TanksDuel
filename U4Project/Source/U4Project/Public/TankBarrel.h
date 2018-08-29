@@ -21,13 +21,13 @@ private:
     // Called every frame
     //virtual void Tick( float DeltaTime ) override;
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
     float MaxDegreesPerSecond{ 10 };
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
     float MaxElevation{ 60 };
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
     float MinElevation{ -1 };
 
 };

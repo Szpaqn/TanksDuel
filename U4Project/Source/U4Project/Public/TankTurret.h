@@ -20,13 +20,13 @@ public:
 
 private:
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
         float MaxDegreesPerSecond{ 60 };
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
         float MaxRotation{ 360 };
 
-    UPROPERTY( EditAnywhere, Category = Setup )
+    UPROPERTY( EditAnywhere, Category = "Setup" )
         float DefaultRotation{ 0 };
 	
 	

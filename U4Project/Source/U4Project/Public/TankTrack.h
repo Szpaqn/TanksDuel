@@ -17,10 +17,10 @@ class U4PROJECT_API UTankTrack : public UStaticMeshComponent
 public:
     UTankTrack();
 
-    UFUNCTION( BlueprintCallable, Category = Input )
+    UFUNCTION( BlueprintCallable, Category = "Input" )
     void SetThrottle( float throttle );
 
-    UPROPERTY( EditAnywhere, Category = TankTrack )
+    UPROPERTY( EditAnywhere, Category = "TankTrack" )
     float MaxForce;
 	
 	
