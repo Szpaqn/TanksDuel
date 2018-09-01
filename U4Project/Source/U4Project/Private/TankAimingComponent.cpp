@@ -12,6 +12,7 @@ UTankAimingComponent::UTankAimingComponent() :
     , Barrel( nullptr )
     , Turret( nullptr )
     , IsBarrelMoving( false )
+    , PreviousDeltaRot()
 {
     // Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
     // off to improve performance if you don't need them.
@@ -72,13 +73,13 @@ void UTankAimingComponent::MoveBarrel( FVector aimDirection )
     auto barrelRotator = Barrel->GetForwardVector().Rotation();
     auto aimAsRotator = aimDirection.Rotation();
 
-    IsBarrelMoving = aimAsRotator != barrelRotator;
-    if( IsBarrelMoving )
-    {
-        auto deltaRotator = aimAsRotator - barrelRotator;
+    auto deltaRotator = aimAsRotator - barrelRotator;
 
-        Barrel->ElevateTheBarrel( deltaRotator.Pitch );
+    IsBarrelMoving = !PreviousDeltaRot.Equals( deltaRotator, 0.1 );
 
-        Turret->RotateTheTurret( deltaRotator.Yaw );
-    }
+    Barrel->ElevateTheBarrel( deltaRotator.Pitch );
+
+    Turret->RotateTheTurret( deltaRotator.Yaw );
+
+    PreviousDeltaRot = deltaRotator;
 }

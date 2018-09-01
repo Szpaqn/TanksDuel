@@ -44,5 +44,6 @@ private:
     UTankTurret* Turret;
 
     bool IsBarrelMoving;
+    FRotator PreviousDeltaRot;
 
 };
