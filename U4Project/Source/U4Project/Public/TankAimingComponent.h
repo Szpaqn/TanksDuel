@@ -12,7 +12,7 @@ class UTankTurret;
 UENUM()
 enum class EFiringState : uint8
 {
-    RELOADING, AMING, LOCKET
+    RELOADING, AMING, LOCKED
 };
 
 UCLASS( ClassGroup = ( Custom ), meta = ( BlueprintSpawnableComponent ) )
@@ -34,11 +34,15 @@ public:
 
 protected:
 
+    void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction );
+
     UPROPERTY( BlueprintReadOnly, Category = "State" )
     EFiringState FiringState;
 
 private:
     UTankBarrel* Barrel;
     UTankTurret* Turret;
+
+    bool IsBarrelMoving;
 
 };

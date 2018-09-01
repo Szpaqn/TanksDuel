@@ -24,6 +24,8 @@ public:
 
     void AimAt( FVector hitLocation );
 
+    bool IsReloaded();
+
     UFUNCTION( BlueprintCallable, Category = "Firing" )
     void Fire();
 
