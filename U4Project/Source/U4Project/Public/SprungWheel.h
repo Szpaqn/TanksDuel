@@ -25,9 +25,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-    UPROPERTY( VisibleAnywhere, Category = "Components" )
-    UStaticMeshComponent* Mass;
     
     UPROPERTY( VisibleAnywhere, Category = "Components" )
     UStaticMeshComponent* Wheel;
