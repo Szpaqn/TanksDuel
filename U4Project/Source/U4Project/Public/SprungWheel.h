@@ -6,8 +6,11 @@
 #include "GameFramework/Actor.h"
 #include "SprungWheel.generated.h"
 
+class USphereComponent;
+class UPhysicsConstraintComponent;
+
 UCLASS()
-class BATTLETANK_API ASprungWheel : public AActor
+class U4PROJECT_API ASprungWheel : public AActor
 {
 	GENERATED_BODY()
 	

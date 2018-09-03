@@ -1,9 +1,8 @@
 // Copyright EmbraceIT Ltd.
 
-#include "BattleTank.h"
 #include "SprungWheel.h"
-
-#include "PhysicsEngine/PhysicsConstraintComponent.h"
+#include "Runtime/Engine/Classes/Components/SphereComponent.h"
+#include "Runtime/Engine/Classes/PhysicsEngine/PhysicsConstraintComponent.h"
 
 // Sets default values
 ASprungWheel::ASprungWheel()
