@@ -1,22 +1,27 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright EmbraceIT Ltd.
 
+#include "BattleTank.h"
 #include "SprungWheel.h"
-#include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
-#include "Runtime/Engine/Classes/PhysicsEngine/PhysicsConstraintComponent.h"
+
+#include "PhysicsEngine/PhysicsConstraintComponent.h"
 
 // Sets default values
-ASprungWheel::ASprungWheel() : 
-    Wheel( nullptr )
-    , MassWheelConstraint( nullptr )
+ASprungWheel::ASprungWheel()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-    MassWheelConstraint = CreateDefaultSubobject<UPhysicsConstraintComponent>( FName( "Constraint" ) );
-    SetRootComponent( MassWheelConstraint );
+	MassWheelConstraint = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("MassWheelConstraint"));
+	SetRootComponent(MassWheelConstraint);
 
-    Wheel = CreateDefaultSubobject<UStaticMeshComponent>( FName( "Wheel" ) );
-    Wheel->SetupAttachment( MassWheelConstraint );
+	Axle = CreateDefaultSubobject<USphereComponent>(FName("Axle"));
+	Axle->SetupAttachment(MassWheelConstraint);
+
+	Wheel = CreateDefaultSubobject<USphereComponent>(FName("Wheel"));
+	Wheel->SetupAttachment(Axle);
+
+	AxleWheelConstraint = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("AxleWheelConstraint"));
+	AxleWheelConstraint->SetupAttachment(Axle);
 
 }
 
@@ -25,15 +30,16 @@ void ASprungWheel::BeginPlay()
 {
 	Super::BeginPlay();
 
-    auto attachParentActor = GetAttachParentActor();
+	SetupConstraint();
+}
 
-    if( !attachParentActor ) return;
-
-    auto tankBody = dynamic_cast<UPrimitiveComponent*>( attachParentActor->GetRootComponent() );
-
-    if( !tankBody ) return;
-
-    MassWheelConstraint->SetConstrainedComponents( tankBody, NAME_None, Wheel, NAME_None );
+void ASprungWheel::SetupConstraint()
+{
+	if (!GetAttachParentActor()) return;
+	UPrimitiveComponent* BodyRoot = Cast<UPrimitiveComponent>(GetAttachParentActor()->GetRootComponent());
+	if (!BodyRoot) return;
+	MassWheelConstraint->SetConstrainedComponents(BodyRoot, NAME_None, Axle, NAME_None);
+	AxleWheelConstraint->SetConstrainedComponents(Axle, NAME_None, Wheel, NAME_None);
 }
 
 // Called every frame
@@ -43,3 +49,7 @@ void ASprungWheel::Tick(float DeltaTime)
 
 }
 
+void ASprungWheel::AddDrivingForce(float ForceMagnitude)
+{
+	Wheel->AddForce(Axle->GetForwardVector() * ForceMagnitude);
+}

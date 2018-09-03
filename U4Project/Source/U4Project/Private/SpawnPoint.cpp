@@ -1,9 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright EmbraceIT Ltd.
 
+#include "BattleTank.h"
 #include "SpawnPoint.h"
-#include "GameFramework/Actor.h"
-#include "Components/ActorComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values for this component's properties
@@ -22,13 +20,10 @@ void USpawnPoint::BeginPlay()
 {
 	Super::BeginPlay();
 
-    auto newActor = GetWorld()->SpawnActorDeferred<AActor>( SpawnClass, GetComponentTransform() );
-
-    if( !newActor ) return;
-
-    newActor->AttachToComponent( this, FAttachmentTransformRules::KeepWorldTransform );
-	
-    UGameplayStatics::FinishSpawningActor( newActor, GetComponentTransform() );
+	SpawnedActor = GetWorld()->SpawnActorDeferred<AActor>(SpawnClass, GetComponentTransform());
+	if (!SpawnedActor) return;
+	SpawnedActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+	UGameplayStatics::FinishSpawningActor(SpawnedActor, GetComponentTransform());
 }
 
 
