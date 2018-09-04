@@ -30,7 +30,9 @@ public:
 
     void SetBarrel( UTankBarrel* barrel ) { Barrel = barrel; }
     void SetTurret( UTankTurret* turret ) { Turret = turret; }
+
     void SetFiringState( EFiringState firingState ) { FiringState = firingState; }
+    EFiringState GetFiringState() { return FiringState; }
 
 protected:
 

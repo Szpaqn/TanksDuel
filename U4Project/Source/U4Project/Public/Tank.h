@@ -29,6 +29,8 @@ public:
     UFUNCTION( BlueprintCallable, Category = "Firing" )
     void Fire();
 
+    UTankAimingComponent* GetTankAimingComponent() { return TankAimingComponent; }
+
 
 protected:
     // Called when the game starts or when spawned

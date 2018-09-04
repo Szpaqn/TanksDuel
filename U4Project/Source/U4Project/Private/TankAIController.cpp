@@ -2,6 +2,7 @@
 
 #include "TankAIController.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
 
 void ATankAIController::Tick( float DeltaTime )
 {
@@ -21,7 +22,10 @@ void ATankAIController::Tick( float DeltaTime )
 
             thisTank->AimAt( playerTank->GetActorLocation() );
 
-            thisTank->Fire();
+            auto aimingComponentState = thisTank->GetTankAimingComponent()->GetFiringState();
+
+            if( aimingComponentState == EFiringState::LOCKED )
+                thisTank->Fire();
         }
         else
         {
