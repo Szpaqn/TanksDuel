@@ -20,11 +20,12 @@ public:
     UFUNCTION( BlueprintCallable, Category = "Input" )
     void SetThrottle( float throttle );
 
-    UPROPERTY( EditAnywhere, Category = "TankTrack" )
+    UPROPERTY( EditDefaultsOnly, Category = "TankTrack" )
     float MaxForce;
 	
 
 private:
-    virtual void TickComponent( float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction ) override;
-	
+	TArray<class ASprungWheel*> GetWheels() const;
+
+	void DriveTrack( float CurrentThrottle );
 };

@@ -5,7 +5,7 @@
 
 void UTankMovementComponent::MoveForwardBack( float throttle )
 {
-    FMath::Clamp<float>( throttle, -1, 1 );
+    FMath::Clamp<float>( throttle, -0.6, 0.8 );
 
     //UE_LOG( LogTemp, Warning, TEXT( "Tank moving T: %f" ), throttle );
     LeftTrack->SetThrottle( throttle );
@@ -15,24 +15,11 @@ void UTankMovementComponent::MoveForwardBack( float throttle )
 void UTankMovementComponent::Turn( float throttle )
 {
     //UE_LOG( LogTemp, Warning, TEXT( "Tank turning T: %f" ), throttle );
-    throttle < 0 ? TurnLeft( throttle ) : TurnRight( throttle );
-}
-
-void UTankMovementComponent::TurnLeft( float throttle )
-{
-    FMath::Clamp<float>( throttle, -1, 0 );
-
-    //UE_LOG( LogTemp, Warning, TEXT( "Tank moving left" ) );
+    FMath::Clamp<float>( throttle, -0.6, 0.6 );
     LeftTrack->SetThrottle( throttle );
+    RightTrack->SetThrottle( -throttle );
 }
 
-void UTankMovementComponent::TurnRight( float throttle )
-{
-    FMath::Clamp<float>( throttle, 0, 1 );
-
-    //UE_LOG( LogTemp, Warning, TEXT( "Tank moving right" ) );
-    LeftTrack->SetThrottle( throttle );
-}
 
 void UTankMovementComponent::RequestDirectMove( const FVector & MoveVelocity, bool bForceMaxSpeed )
 {

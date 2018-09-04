@@ -2,35 +2,48 @@
 
 #include "TankTrack.h"
 
+#include "SprungWheel.h"
+#include "SpawnPoint.h"
+
 UTankTrack::UTankTrack() :
-    MaxForce( 10000000 )
+    MaxForce( 3000000 )
 {
     PrimaryComponentTick.bCanEverTick = true;
 }
 
-void UTankTrack::TickComponent( float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction )
+
+void UTankTrack::SetThrottle(float Throttle)
 {
-    Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-
-    auto rightVector = GetRightVector();
-
-    auto slippageSpeed = FVector::DotProduct( rightVector, GetComponentVelocity() );
-
-    auto correctingAcceleration = -slippageSpeed / DeltaTime * rightVector;
-    
-    auto tankBody = Cast<UStaticMeshComponent>( GetOwner()->GetRootComponent() );
-    auto correctionForce = ( tankBody->GetMass() * correctingAcceleration ) * 0.5;
-
-    tankBody->AddForce( correctionForce );
+	float CurrentThrottle = FMath::Clamp<float>(Throttle, -1, 1);
+	DriveTrack(CurrentThrottle);
 }
 
-void UTankTrack::SetThrottle( float throttle )
+void UTankTrack::DriveTrack(float CurrentThrottle)
 {
-    auto forceApplied = GetForwardVector() * throttle * MaxForce;
-    auto forceLocation = GetComponentLocation();
-    auto tankBody = Cast<UPrimitiveComponent>( GetOwner()->GetRootComponent() );
-
-    tankBody->AddForceAtLocation( forceApplied, forceLocation );
+	auto forceApplied = CurrentThrottle * MaxForce;
+	auto wheels = GetWheels();
+	auto forcePerWheel = forceApplied / wheels.Num();
+	for (ASprungWheel* wheel : wheels)
+	{
+		wheel->AddDrivingForce(forcePerWheel);
+	}
 }
 
+TArray<ASprungWheel*> UTankTrack::GetWheels() const
+{
+	TArray<ASprungWheel*> resultArray;
+	TArray<USceneComponent*> children;
+	GetChildrenComponents(true, children);
+	for (USceneComponent* child : children)
+	{
+		auto spawnPointChild = Cast<USpawnPoint>(child);
+		if (!spawnPointChild) continue;
 
+		AActor* spawnedChild = spawnPointChild->GetSpawnedActor();
+		auto sprungWheel = Cast<ASprungWheel>(spawnedChild);
+		if (!sprungWheel) continue;
+
+		resultArray.Add(sprungWheel);
+	}
+	return resultArray;
+}

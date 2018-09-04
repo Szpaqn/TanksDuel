@@ -22,12 +22,6 @@ class U4PROJECT_API UTankMovementComponent : public UNavMovementComponent
     UFUNCTION( BlueprintCallable, Category = "Input" )
     void Turn( float throttle);
 
-    UFUNCTION( BlueprintCallable, Category = "Input" )
-    void TurnLeft( float throttle);
-
-    UFUNCTION( BlueprintCallable, Category = "Input" )
-    void TurnRight( float throttle);
-
     //pathfinding
     void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 public:
