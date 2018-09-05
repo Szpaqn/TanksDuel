@@ -14,9 +14,9 @@
 // Sets default values
 ATank::ATank() :
     TankAimingComponent( nullptr )
-    , LaunchSpeed( 10000 )
+    , LaunchSpeed( 20000 )
     , Barrel( nullptr )    
-    , ReloadTime( 4 )
+    , ReloadTime( 2 )
     , CurrentReloadTime( 0 )
 {
     // Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
