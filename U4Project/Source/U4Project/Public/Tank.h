@@ -57,6 +57,14 @@ public:
     
     UFUNCTION( BlueprintCallable, Category = "Setup" )
     void SetTrackRight( UTankTrack* trackRight );
+	
+	UFUNCTION( BlueprintCallable, Category = "Damage" )
+    float TakeDamage(
+		float DamageAmount,
+		struct FDamageEvent const & DamageEvent,
+		class AController * EventInstigator,
+		AActor * DamageCauser
+	) override;
 
 private:
     UPROPERTY( EditDefaultsOnly, Category = "Firing" )
@@ -73,4 +81,10 @@ private:
     float ReloadTime;
 
     float CurrentReloadTime;
+
+	UPROPERTY( EditAnywhere, Category = "Health" )
+	int32 StartingHealth;
+
+	UPROPERTY( VisibleAnywhere, Category = "Health" )
+	int32 CurrentHealth;
 };

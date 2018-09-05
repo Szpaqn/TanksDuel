@@ -18,6 +18,8 @@ ATank::ATank() :
     , Barrel( nullptr )    
     , ReloadTime( 2 )
     , CurrentReloadTime( 0 )
+	, StartingHealth( 100 )
+	, CurrentHealth( StartingHealth )
 {
     // Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = false;
@@ -51,7 +53,7 @@ void ATank::Fire()
 
             projectile->LaunchProjectile( LaunchSpeed );
             CurrentReloadTime = FPlatformTime::Seconds();
-            UE_LOG( LogTemp, Warning, TEXT( "TANK %s Fire !! " ), *this->GetName() );
+            //UE_LOG( LogTemp, Warning, TEXT( "TANK %s Fire !! " ), *this->GetName() );
         }
     }
 }
@@ -91,5 +93,18 @@ void ATank::SetTrackRight( UTankTrack * trackRight )
 {
     TrackRight = trackRight;
     TankMovementComponent->SetRightTrack( trackRight );
+}
+
+float ATank::TakeDamage( float DamageAmount, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser )
+{
+	int32 damagePoints = FPlatformMath::RoundToInt( DamageAmount );
+
+	int32 damageToApply = FMath::Clamp( damagePoints, 0, CurrentHealth );
+
+	UE_LOG( LogTemp, Warning, TEXT( "DamageAmount %f damagePoints %i damageToApply %i CurrentHealth %i" ), DamageAmount, damagePoints, damageToApply, CurrentHealth );
+
+	CurrentHealth -= damageToApply;
+
+	return static_cast<float>( damageToApply );
 }
 

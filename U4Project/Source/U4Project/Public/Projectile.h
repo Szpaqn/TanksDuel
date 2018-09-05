@@ -9,6 +9,7 @@
 class UTankProjectileMovementComponent;
 class UStaticMeshComponent;
 class UParticleSystemComponent;
+class URadialForceComponent;
 
 UCLASS()
 class U4PROJECT_API AProjectile : public AActor
@@ -29,7 +30,13 @@ public:
 
     void LaunchProjectile( float speed );
 
+	void OnKillTimerTimeout();
+
+
 private:
+	UFUNCTION()
+	void OnHit( UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, FVector NormalImpulse, const FHitResult & Hit );
+
     UTankProjectileMovementComponent* ProjectileMovementComp;
 
 	UPROPERTY( VisibleAnywhere, Category = "Components" )
@@ -37,5 +44,15 @@ private:
 
 	UPROPERTY( VisibleAnywhere, Category = "Components" )
 	UParticleSystemComponent* LaunchBlast;
+
+	UPROPERTY( VisibleAnywhere, Category = "Components" )
+	UParticleSystemComponent* ImpactBlast;
+
+	UPROPERTY( VisibleAnywhere, Category = "Components" )
+	URadialForceComponent* ExplosionForce;
+
+	UPROPERTY( EditDefaultsOnly , Category = "Damage" )
+	float Damage;
 	
+	float DestroyDelay{ 10 };
 };
