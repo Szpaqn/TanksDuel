@@ -77,7 +77,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	ExplosionForce->FireImpulse();
 	CollisionMesh->DestroyComponent();
 
-	UGameplayStatics::ApplyRadialDamage( this, Damage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>() );
+	UGameplayStatics::ApplyRadialDamage( this, Damage, ExplosionForce->GetComponentLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>() );
 
 	FTimerHandle timer;
 	//GetWorld()->GetTimerManager().SetTimer( timer, this, [this]() { this->Destroy(); }, DestroyDelay, false ); //lambdas don't work :/
