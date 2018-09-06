@@ -30,7 +30,9 @@ public:
     void Fire();
 
     UTankAimingComponent* GetTankAimingComponent() { return TankAimingComponent; }
-
+	
+	UFUNCTION( BlueprintPure, Category = "HealthBar" )
+	float GetHealthLevel(); // between 0 and 1
 
 protected:
     // Called when the game starts or when spawned

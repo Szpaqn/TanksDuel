@@ -58,6 +58,11 @@ void ATank::Fire()
     }
 }
 
+float ATank::GetHealthLevel()
+{
+	return static_cast<float>( CurrentHealth ) / static_cast<float>( StartingHealth );
+}
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
