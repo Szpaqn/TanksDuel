@@ -68,6 +68,8 @@ void ATank::BeginPlay()
 {
     Super::BeginPlay();
 
+	CurrentHealth = StartingHealth;
+
 }
 
 // Called to bind functionality to input
@@ -109,6 +111,11 @@ float ATank::TakeDamage( float DamageAmount, FDamageEvent const & DamageEvent, A
 	UE_LOG( LogTemp, Warning, TEXT( "DamageAmount %f damagePoints %i damageToApply %i CurrentHealth %i" ), DamageAmount, damagePoints, damageToApply, CurrentHealth );
 
 	CurrentHealth -= damageToApply;
+
+	if( CurrentHealth <= 0 )
+	{
+		OnDeath.Broadcast();
+	}
 
 	return static_cast<float>( damageToApply );
 }

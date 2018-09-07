@@ -53,6 +53,29 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 }
 
+void ATankPlayerController::SetPawn( APawn * pawn )
+{
+	Super::SetPawn( pawn );
+
+	if( pawn )
+	{
+		auto thisTank = dynamic_cast< ATank* >( pawn );
+
+		if( !ensure( thisTank ) ) { return; }
+
+		thisTank->OnDeath.AddUniqueDynamic( this, &ATankPlayerController::OnThisTankDeath );
+	}
+}
+
+void ATankPlayerController::OnThisTankDeath()
+{
+	StartSpectatingOnly();
+}
+
+//void ATankPlayerController::StartSpectating()
+//{
+//}
+
 std::pair<bool, FVector> ATankPlayerController::GetSightRayHitLocation()
 {
     //Find the pos of the crosshair and line trace through.

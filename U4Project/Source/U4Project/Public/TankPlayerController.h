@@ -32,15 +32,19 @@ private:
     void AimTowardsCrosshair();
 
     UPROPERTY( EditAnywhere )
-        float CrosshairXLocation{ 0.5 };
+    float CrosshairXLocation{ 0.5 };
 
     UPROPERTY( EditAnywhere )
-        float CrosshairYLocation{ 0.3 };
+    float CrosshairYLocation{ 0.3 };
 
     UPROPERTY( EditAnywhere )
-        int32 LineTraceRange
-    {
-        1000000
-    }; //10 * 1000 * 100 cm
+    int32 LineTraceRange{ 1000000 }; //10 * 1000 * 100 cm
 
+	virtual void SetPawn( APawn* pawn ) override;
+
+	UFUNCTION()
+	void OnThisTankDeath();
+
+	//UFUNCTION()
+	//void StartSpectating();
 };

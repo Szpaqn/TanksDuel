@@ -13,6 +13,8 @@ class UTankTurret;
 class AProjectile;
 class UTankTrack;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE( FTankDelegate );
+
 UCLASS()
 class U4PROJECT_API ATank : public APawn
 {
@@ -33,6 +35,8 @@ public:
 	
 	UFUNCTION( BlueprintPure, Category = "HealthBar" )
 	float GetHealthLevel(); // between 0 and 1
+
+	FTankDelegate OnDeath;
 
 protected:
     // Called when the game starts or when spawned

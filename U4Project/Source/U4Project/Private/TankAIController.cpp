@@ -3,6 +3,21 @@
 #include "TankAIController.h"
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "GameFramework/Pawn.h"
+
+void ATankAIController::SetPawn( APawn * pawn )
+{
+	Super::SetPawn( pawn );
+
+	if( pawn )
+	{
+		auto thisTank = dynamic_cast< ATank* >( pawn );
+
+		if( !ensure( thisTank ) ) { return; }
+
+		thisTank->OnDeath.AddUniqueDynamic( this, &ATankAIController::OnThisTankDeath );
+	}
+}
 
 void ATankAIController::Tick( float DeltaTime )
 {
@@ -33,5 +48,10 @@ void ATankAIController::Tick( float DeltaTime )
         }
     }
 
+}
+
+void ATankAIController::OnThisTankDeath()
+{
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
 

@@ -21,8 +21,13 @@ class U4PROJECT_API ATankAIController : public AAIController
 public:
 
 private:
-    float minRadiusToPlayer{ 8000 };
+    float minRadiusToPlayer{ 4000 };
+
+	virtual void SetPawn( APawn* pawn ) override;
 
     virtual void Tick( float DeltaTime ) override;
+
+	UFUNCTION()
+	void OnThisTankDeath();
 
 };

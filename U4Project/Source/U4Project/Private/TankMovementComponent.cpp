@@ -5,7 +5,7 @@
 
 void UTankMovementComponent::MoveForwardBack( float throttle )
 {
-    FMath::Clamp<float>( throttle, -0.6, 0.8 );
+    FMath::Clamp<float>( throttle, -1, 1 );
 
     //UE_LOG( LogTemp, Warning, TEXT( "Tank moving T: %f" ), throttle );
     LeftTrack->SetThrottle( throttle );
