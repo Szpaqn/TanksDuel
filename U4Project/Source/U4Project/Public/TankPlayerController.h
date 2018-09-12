@@ -5,6 +5,7 @@
 #include <utility>
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "GameFramework/Pawn.h"
 #include "TankPlayerController.generated.h"
 
 class ATank;
@@ -25,7 +26,12 @@ public:
 
     std::pair<bool, FVector> GetSightRayHitLocation();
     std::pair<bool, FVector> GetLookVectorHitLocation( FVector LookDirection ) const;
+								  
+	UFUNCTION( BlueprintCallable, Category = "death" ) 
+	FString returnStateStr() { return deadStr; }
 
+	UPROPERTY( EditAnywhere, Category = "death" )
+	FString deadStr{};
 private:
     virtual void Tick( float DeltaTime ) override;
 
@@ -44,7 +50,4 @@ private:
 
 	UFUNCTION()
 	void OnThisTankDeath();
-
-	//UFUNCTION()
-	//void StartSpectating();
 };

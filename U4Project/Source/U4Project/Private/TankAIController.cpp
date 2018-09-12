@@ -52,6 +52,7 @@ void ATankAIController::Tick( float DeltaTime )
 
 void ATankAIController::OnThisTankDeath()
 {
+	deadStr = "You Won! :D";
 	GetPawn()->DetachFromControllerPendingDestroy();
 }
 

@@ -16,10 +16,14 @@ class ATank;
 UCLASS()
 class U4PROJECT_API ATankAIController : public AAIController
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
+	UFUNCTION( BlueprintCallable, Category = "death" ) 
+	FString returnStateStr() { return deadStr; }
 
+	UPROPERTY( EditAnywhere, Category = "death" )
+	FString deadStr{};
 private:
     float minRadiusToPlayer{ 4000 };
 
@@ -29,5 +33,4 @@ private:
 
 	UFUNCTION()
 	void OnThisTankDeath();
-
 };

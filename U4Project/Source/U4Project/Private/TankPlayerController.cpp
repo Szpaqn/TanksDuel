@@ -69,6 +69,7 @@ void ATankPlayerController::SetPawn( APawn * pawn )
 
 void ATankPlayerController::OnThisTankDeath()
 {
+	deadStr = "You Lost! ;(";
 	StartSpectatingOnly();
 }
 
